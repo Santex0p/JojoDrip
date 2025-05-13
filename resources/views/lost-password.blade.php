@@ -7,7 +7,7 @@
         <title>Laravel</title>
     </head>
     <body>
-        <form action="/login" method="POST">
+        <form action="/reset-password" method="POST">
             @csrf
         <label for="user">Utilisateur</label>
         <input id="user" name="user">

@@ -5,16 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+
     </head>
     <body>
-        <form action="/login" method="POST">
-            @csrf
-        <label for="user">Utilisateur</label>
-        <input id="user" name="user">
+        <header>
+            <h1>JojoDrip</h1>
+            <nav>
 
-        <label for="password">Mot de passe</label>
-        <input id="password" type="password" name="password">
-            <button type="submit">Login</button>
-        </form>
+            </nav>
+        </header>
     </body>
 </html>
