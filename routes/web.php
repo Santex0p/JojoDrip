@@ -1,9 +1,15 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () { return view('home'); });
+# Index home
+Route::get('/', [ProductsController::class, 'index'])->name('home');
+
+# Admin panel
+Route::get('/admin', [AdminController::class, 'index'])->name('admin-home');
 
 # Auth view and login method
 Route::post('/login', [AuthController::class, 'login'])->name('login');

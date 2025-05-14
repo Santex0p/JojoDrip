@@ -14,13 +14,14 @@
 
             </nav>
         </header>
-
     <table>
         <tr>
-            <th>Produits</th>
+            <th colspan="{{count($products)}}">Produits</th>
         </tr>
         <tr>
-
+            @foreach($products as $product)
+                <td>{{$product['name']}}</td>
+            @endforeach
         </tr>
     </table>
     </body>
