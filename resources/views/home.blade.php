@@ -14,5 +14,14 @@
 
             </nav>
         </header>
+
+    <table>
+        <tr>
+            <th>Produits</th>
+        </tr>
+        <tr>
+
+        </tr>
+    </table>
     </body>
 </html>

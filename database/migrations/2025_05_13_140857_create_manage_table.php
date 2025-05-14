@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('t_manage', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->references('id')->on('t_admin')->onDelete('cascade');
+            $table->foreignId('product_id')->references('id')->on('t_product')->onDelete('cascade');
+            $table->foreignId('order_id')->references('id')->on('t_order')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('manage');
+        Schema::dropIfExists('t_manage');
     }
 };
