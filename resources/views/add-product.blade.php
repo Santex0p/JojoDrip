@@ -8,22 +8,25 @@
 
     </head>
     <body>
-        <header>
-            <h1>JojoDrip</h1>
-            <a href="/admin">@if(Auth::check())Admin @else Se connecter @endif</a>
-            <nav>
+    <div class="form-add">
+        <form action="/add-product" method="POST" enctype="multipart/form-data">
+            @csrf
+        <label for="name">Nom</label>
+        <input type="text" name="name">
+        <label for="category">Catégorie</label>
+        <select name="category" id="category">
+            <option value="homme">Homme</option>
+            <option value="femme">Femme</option>
+        </select>
+        <label for="price">Prix</label>
+        <input type="number" name="price">
+        <label for="image">Image</label>
+        <input type="file" name="image" >
+        <label for="description">Description</label>
+        <textarea name="description"></textarea>
 
-            </nav>
-        </header>
-    <table>
-        <tr>
-            <th colspan="{{count($products)}}">Produits</th>
-        </tr>
-        <tr>
-            @foreach($products as $product)
-                <td>{{$product['name']}}</td>
-            @endforeach
-        </tr>
-    </table>
+        <button type="submit">Ajouter</button>
+        </form>
+    </div>
     </body>
 </html>

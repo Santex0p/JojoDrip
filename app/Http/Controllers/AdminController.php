@@ -11,13 +11,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
-            $admin = Admin::where('id', Auth::id())->first()->toArray();
-        }
-        else
-        {
-            return redirect('auth');
-        }
+
+        $admin = Admin::where('id', Auth::id())->first()->toArray();
 
         $products = Product::all()->toArray();
 

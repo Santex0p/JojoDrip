@@ -37,6 +37,7 @@
         @endforeach
         </tbody>
     </table>
+        <a href="/products">Ajouter un nouveau produit</a>
 
     <table>
         <thead>

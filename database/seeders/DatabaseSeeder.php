@@ -25,21 +25,24 @@ class DatabaseSeeder extends Seeder
             'photo' => 'chemise-bleu.png',
             'name' => 'Zipper',
             'category' => 'homme',
-            'price' => '4.99'
+            'price' => '4.99',
+            'description' => 'test'
         ]);
 
         Product::create([
             'photo' => 'chemise-jolyne.png',
             'name' => 'Jolyne',
             'category' => 'homme',
-            'price' => '5.99'
+            'price' => '5.99',
+            'description' => 'test'
         ]);
 
         Product::create([
             'photo' => 'chemise-noir.png',
             'name' => 'Jotaro',
             'category' => 'homme',
-            'price' => '9.99'
+            'price' => '9.99',
+            'description' => 'test'
         ]);
     }
 }
