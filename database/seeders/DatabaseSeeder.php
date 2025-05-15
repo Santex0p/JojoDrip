@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
-            'photo' => 'chemise-jolyne.png',
+            'photo' => public_path('img/chemise-jolyne.png'),
             'name' => 'Jolyne',
             'category' => 'homme',
             'price' => '5.99',

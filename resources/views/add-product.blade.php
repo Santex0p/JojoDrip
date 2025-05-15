@@ -19,7 +19,7 @@
             <option value="femme">Femme</option>
         </select>
         <label for="price">Prix</label>
-        <input type="number" name="price">
+        <input type="number" name="price" step=".01">
         <label for="image">Image</label>
         <input type="file" name="image" >
         <label for="description">Description</label>

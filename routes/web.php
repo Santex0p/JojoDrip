@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     # Admin panel
     Route::get('/admin', [AdminController::class, 'index'])->name('admin-home');
-    # Add product
+    # Products
+    Route::post('/add-product', [ProductsController::class, 'add'])->name('products');
     Route::get('/products', function () {return view('add-product');})->name('product');
+    Route::post('/remove-product', [ProductsController::class, 'delete'])->name('delete-product');
 });
 
 # Index home
@@ -23,8 +25,7 @@ Route::post('/auth', [AuthController::class, 'login'])->name('auth');
 Route::get('/login', function () { return view('login'); })->name('login'); # View login
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-# Products
-Route::post('/add-product', [ProductsController::class, 'add'])->name('products');
+
 
 # View and password reset method
 Route::get('/lost-password', function () { return view('lost-password'); });
