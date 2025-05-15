@@ -32,7 +32,7 @@ class AuthController extends Controller
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
-        return redirect()->intended('home');
+        return redirect()->route('home');
     }
 
     public function resetPassword(Request $request): RedirectResponse
@@ -41,13 +41,24 @@ class AuthController extends Controller
             'user' => ['required'],
             'password' => ['required'],
         ]);
+        $existingUser = null;
 
-        $existingUser = Admin::query()->where('user', $credentials['user'])->select('user')->first()->toArray();
+        // Take all users and check if input user existing
+        $allUsers = Admin::all()->toArray();
+        foreach ($allUsers as $user) {
+            if ($user == $credentials['user']) {
+                $existingUser = Admin::query()->where('user', $credentials['user'])->select('user')->first()->toArray();
+            }
+        }
 
         if($existingUser) {
             Admin::query()->update([
                 'password' => Hash::make($credentials['password']),
             ]);
+        }
+        else
+        {
+            return redirect()->back()->withErrors(['user' => 'The provided credentials do not match our records.']);
         }
 
 
