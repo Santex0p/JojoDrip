@@ -18,7 +18,6 @@
         </header>
 
     <h2>Panneau d'administration</h2>
-
     <table>
         <thead>
         <tr>
@@ -26,11 +25,32 @@
             <th>Options</th>
         </tr>
         </thead>
+        <tbody>
+        @foreach($products as $product)
         <tr>
-            <td></td>
-            <td></td>
+            <td>{{$product['name']}}</td>
+            <td>
+                <a href="/edit">Editer</a>
+                <a href="/delete">Effacer</a>
+            </td>
         </tr>
+        @endforeach
+        </tbody>
+    </table>
 
+    <table>
+        <thead>
+        <tr>
+            <th>Order - List</th>
+            <th>Status</th>
+            <th>Change Status</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
     </table>
 
     </body>

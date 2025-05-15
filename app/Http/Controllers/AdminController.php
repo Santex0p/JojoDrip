@@ -19,7 +19,7 @@ class AdminController extends Controller
             return redirect('auth');
         }
 
-        $products = Product::all();
+        $products = Product::all()->toArray();
 
         return view('admin-panel', ['admin' => $admin ?? null, 'products' => $products ?? null]);
     }
