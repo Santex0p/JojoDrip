@@ -7,6 +7,11 @@
         <title>Laravel</title>
     </head>
     <body>
+    <header>
+        <nav>
+            <a href="/">Accueil</a>
+        </nav>
+    </header>
         <form action="/auth" method="POST">
             @csrf
         <label for="user">Utilisateur</label>

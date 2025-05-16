@@ -8,6 +8,11 @@
 
     </head>
     <body>
+    <header>
+        <nav>
+            <a href="/">Accueil</a>
+        </nav>
+    </header>
 
     @if(Auth::check())
         <form action="/update-product" method="POST" enctype="multipart/form-data">

@@ -8,6 +8,11 @@
 
     </head>
     <body>
+    <header>
+        <nav>
+            <a href="/">Accueil</a>
+        </nav>
+    </header>
     <div class="form-add">
         <form action="/add-product" method="POST" enctype="multipart/form-data">
             @csrf

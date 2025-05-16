@@ -12,6 +12,7 @@
             <h1>JojoDrip</h1>
             <p>Bienvenue {{$admin['user']}}</p>
             <a href="/logout">Se déconnecter</a>
+            <a href="/">Accueil</a>
             <nav>
 
             </nav>

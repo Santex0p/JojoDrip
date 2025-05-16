@@ -11,6 +11,7 @@
         <header>
             <h1>JojoDrip</h1>
             <a href="/admin">@if(Auth::check())Admin @else Se connecter @endif</a>
+            <a href="/basket">Panier</a>
             <nav>
 
             </nav>

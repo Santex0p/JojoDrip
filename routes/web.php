@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,9 @@ Route::middleware('auth')->group(function () {
 
 # Index home
 Route::get('/', [ProductsController::class, 'index'])->name('home');
+
+# Basket
+Route::get('/basket', [BasketController::class, 'index'])->name('basket');
 
 # Public product
 Route::get('/product/{product}', [ProductsController::class, 'details'])->name('detail-product');
