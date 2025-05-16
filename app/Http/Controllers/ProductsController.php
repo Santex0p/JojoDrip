@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductsController extends Controller
 {
@@ -26,7 +27,7 @@ class ProductsController extends Controller
         $request->image->move(public_path('img'), $imageName); // To stock the image in img dir
 
         Product::query()->create([
-            'photo' => public_path('img/'.$imageName),
+            'photo' => $imageName,
             'name' => $request->input('name'),
             'category' => $request->input('category'),
             'price' => $request->input('price'),
@@ -39,5 +40,31 @@ class ProductsController extends Controller
     public function delete(Request $request) {
         Product::destroy($request->input('id'));
         return redirect()->route('admin-home');
+    }
+
+    public function edit(Request $request) {}
+
+    public function update(Request $request) {
+
+        if ($request->image) {
+            $imageName = time() . '.' . $request->image->getClientOriginalName();
+            $request->image->move(public_path('img'), $imageName);
+            File::delete(public_path('img/') . $request->input('photo-name'));
+        }
+
+        Product::query()->where('id', $request->input('id'))->update([
+            'photo' => $imageName ?? $request->input('photo-name'),
+            'name' => $request->input('name'),
+            'category' => $request->input('category'),
+            'price' => $request->input('price'),
+            'description' => $request->input('description')
+        ]);
+
+        return redirect()->route('detail-product', $request->input('id'));
+
+    }
+
+    public function details(Product $product) {
+        return view('product', ['product' => $product->toArray()]);
     }
 }

@@ -13,12 +13,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/add-product', [ProductsController::class, 'add'])->name('products');
     Route::get('/products', function () {return view('add-product');})->name('product');
     Route::post('/remove-product', [ProductsController::class, 'delete'])->name('delete-product');
+    Route::post('/update-product', [ProductsController::class, 'update'])->name('update-product');
 });
 
 # Index home
 Route::get('/', [ProductsController::class, 'index'])->name('home');
 
-
+# Public product
+Route::get('/product/{product}', [ProductsController::class, 'details'])->name('detail-product');
 
 # Auth
 Route::post('/auth', [AuthController::class, 'login'])->name('auth');

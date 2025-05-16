@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
-            'photo' => public_path('img/t-shirt-giorno.jpg'),
+            'photo' => 't-shirt-giorno.jpg',
             'name' => 'Giorno',
             'category' => 'homme',
             'price' => '4.99',
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
-            'photo' => public_path('img/chemise-jolyne.png'),
+            'photo' => 'chemise-jolyne.jpeg',
             'name' => 'Jolyne',
             'category' => 'homme',
             'price' => '5.99',
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create([
-            'photo' => public_path('img/chemise-bleu.jpg'),
+            'photo' => 'chemise-bleu.jpg',
             'name' => 'Jotaro',
             'category' => 'homme',
             'price' => '9.99',

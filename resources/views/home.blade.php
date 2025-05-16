@@ -21,7 +21,12 @@
         </tr>
         <tr>
             @foreach($products as $product)
-                <td>{{$product['name']}}</td>
+                <td>
+                    {{$product['name']}}
+                </td>
+                <td>
+                    <a href="/product/{{$product['id']}}">Details</a>
+                </td>
             @endforeach
         </tr>
     </table>
