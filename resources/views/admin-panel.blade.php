@@ -30,16 +30,16 @@
         <tr>
             <td>{{$product['name']}}</td>
             <td>
-                <form id="edit" action="/edit-product" method="POST">
+                <form id="edit-{{$product['id']}}" action="/edit-product" method="POST">
                     @csrf
                     <input type="hidden" value="{{$product['id']}}" name="id">
                 </form>
-                <form id="remove" action="/remove-product" method="POST">
+                <form id="remove-{{$product['id']}}" action="/remove-product" method="POST">
                     @csrf
                     <input type="hidden" value="{{$product['id']}}" name="id">
                 </form>
-                <button type="submit" form="edit">Editer</button>
-                <button type="submit" form="remove">Effacer</button>
+                <button type="submit" form="edit-{{$product['id']}}">Editer</button>
+                <button type="submit" form="remove-{{$product['id']}}">Effacer</button>
             </td>
         </tr>
         @endforeach

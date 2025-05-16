@@ -37,11 +37,7 @@ class ProductsController extends Controller
     }
 
     public function delete(Request $request) {
-
-
-
         Product::destroy($request->input('id'));
-
         return redirect()->route('admin-home');
     }
 }
