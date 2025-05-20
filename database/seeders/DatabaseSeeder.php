@@ -57,6 +57,8 @@ class DatabaseSeeder extends Seeder
         Order::create([
             'quantity' => 1,
             'customer_id' => 1,
+            'status' => 'PENDING',
+            'price' => 3.99
         ]);
 
         Having::create([

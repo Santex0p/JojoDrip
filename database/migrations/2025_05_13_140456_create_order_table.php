@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('t_order', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity');
+            $table->string('status');
+            $table->decimal('price');
             $table->foreignId('customer_id')->references('id')->on('t_customer')->onDelete('cascade');
             $table->timestamps();
         });

@@ -31,9 +31,7 @@
         <tr>
             <td>{{$product['name']}}</td>
             <td>
-                <form id="edit-{{$product['id']}}" action="/edit-product" method="POST">
-                    @csrf
-                    <input type="hidden" value="{{$product['id']}}" name="id">
+                <form id="edit-{{$product['id']}}" action="/product/{{$product['id']}}/{{$action = 'edit'}}" method="GET">
                 </form>
                 <form id="remove-{{$product['id']}}" action="/remove-product" method="POST">
                     @csrf
@@ -47,7 +45,6 @@
         </tbody>
     </table>
         <a href="/products">Ajouter un nouveau produit</a>
-
     <table>
         <thead>
         <tr>
@@ -56,11 +53,34 @@
             <th>Change Status</th>
         </tr>
         </thead>
+        @foreach($orders as $order)
         <tbody>
             <tr>
-                <td></td>
+                <td>{{$order['id']}}</td>
+                <td>{{$order['status']}}</td>
+                <td>
+                    <form id="pending-{{$order['id']}}" action="/change-status" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$order['id']}}" name="id">
+                        <input type="hidden" value="PENDING" name="status">
+                    </form>
+                    <form id="progress-{{$order['id']}}" action="/change-status" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$order['id']}}" name="id">
+                        <input type="hidden" value="PROGRESS" name="status">
+                    </form>
+                    <form id="delivered-{{$order['id']}}" action="/change-status" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{$order['id']}}" name="id">
+                        <input type="hidden" value="DELIVERED" name="status">
+                    </form>
+                    <button type="submit" form="pending-{{$order['id']}}">Pending</button>
+                    <button type="submit" form="progress-{{$order['id']}}">Progress</button>
+                    <button type="submit" form="delivered-{{$order['id']}}">Delivered</button>
+                </td>
             </tr>
         </tbody>
+        @endforeach
     </table>
 
     </body>

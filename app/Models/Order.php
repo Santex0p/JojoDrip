@@ -8,7 +8,10 @@ class Order extends Model
 {
     protected $table = 't_order';
     protected $fillable = [
-        'quantity'
+        'customer_id',
+        'quantity',
+        'status',
+        'price'
     ];
 
     public function customer()

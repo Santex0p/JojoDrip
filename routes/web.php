@@ -15,6 +15,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/products', function () {return view('add-product');})->name('product');
     Route::post('/remove-product', [ProductsController::class, 'delete'])->name('delete-product');
     Route::post('/update-product', [ProductsController::class, 'update'])->name('update-product');
+    Route::get('/edit-view' , [ProductsController::class, 'editView'])->name('edit-product');
+    Route::post('/change-status' , [BasketController::class, 'changeStatus'])->name('change-status');
 });
 
 # Index home
@@ -22,9 +24,13 @@ Route::get('/', [ProductsController::class, 'index'])->name('home');
 
 # Basket
 Route::get('/basket', [BasketController::class, 'index'])->name('basket');
+Route::get('/add-to-basket', [BasketController::class, 'addToBasket'])->name('add-to-basket');
+Route::get('/remove-basket', [BasketController::class, 'removeFromBasket'])->name('remove-basket');
+Route::get('/remove-all', [BasketController::class, 'removeAll'])->name('remove-all');
+Route::post('/buy', [BasketController::class, 'buy'])->name('buy');
 
 # Public product
-Route::get('/product/{product}', [ProductsController::class, 'details'])->name('detail-product');
+Route::get('/product/{product}/{action}', [ProductsController::class, 'details'])->name('detail-product');
 
 # Auth
 Route::post('/auth', [AuthController::class, 'login'])->name('auth');

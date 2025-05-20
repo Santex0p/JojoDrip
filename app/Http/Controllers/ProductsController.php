@@ -42,8 +42,6 @@ class ProductsController extends Controller
         return redirect()->route('admin-home');
     }
 
-    public function edit(Request $request) {}
-
     public function update(Request $request) {
 
         if ($request->image) {
@@ -60,11 +58,15 @@ class ProductsController extends Controller
             'description' => $request->input('description')
         ]);
 
-        return redirect()->route('detail-product', $request->input('id'));
+        return redirect()->route('detail-product', [$request->input('id'), $request->input('action')]);
 
     }
 
-    public function details(Product $product) {
-        return view('product', ['product' => $product->toArray()]);
+    public function editView(Request $request) {
+        return redirect()->route('detail-product', $request->input('id'))->with('action', $request->input('action'));
+    }
+
+    public function details(Product $product, Request $request) {
+        return view('product', ['product' => $product->toArray(), 'action' => $request->route('action')]);
     }
 }

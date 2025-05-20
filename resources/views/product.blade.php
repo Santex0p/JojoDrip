@@ -14,7 +14,7 @@
         </nav>
     </header>
 
-    @if(Auth::check())
+    @if(Auth::check() && $action == 'edit')
         <form action="/update-product" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="{{$product['id']}}" name="id">
@@ -31,6 +31,7 @@
             </select>
             <h3>Description</h3>
             <textarea name="description">{{$product['description']}}</textarea>
+            <input type="hidden" value="edit" name="action">
             <button type="submit">Mettre à Jour</button>
         </form>
     @else
@@ -44,7 +45,12 @@
             <p>{{$product['description']}}</p>
     @endif
 
+    <form action="/add-to-basket" method="GET">
 
+        <input type="hidden" value="{{$product['id']}}" name="id-product">
+        <button type="submit">Mettre au Panier</button>
+
+    </form>
 
     </body>
 </html>

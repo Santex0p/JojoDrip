@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,8 @@ class AdminController extends Controller
 
         $products = Product::all()->toArray();
 
-        return view('admin-panel', ['admin' => $admin ?? null, 'products' => $products ?? null]);
+        $orders = Order::all()->toArray();
+
+        return view('admin-panel', ['admin' => $admin ?? null, 'products' => $products ?? null , 'orders' => $orders ?? null]);
     }
 }
