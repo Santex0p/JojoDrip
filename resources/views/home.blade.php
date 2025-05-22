@@ -27,6 +27,7 @@
                 </td>
                 <td>
                     <img src="{{asset('img/'.$product['photo'])}}" width="200px">
+                    {{$product['price']}}
                     <a href="/product/{{$product['id']}}/{{$action = 'view'}}">Details</a>
                 </td>
             @endforeach

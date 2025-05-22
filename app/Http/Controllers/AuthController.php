@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,8 +17,8 @@ class AuthController extends Controller
     public function login(Request $request): RedirectResponse
     {
        $credentials = $request->validate([
-           'user' => ['required'],
-           'password' => ['required'],
+           'user' => 'required',
+           'password' => 'required',
         ]);
 
        if(Auth::attempt($credentials)) {
@@ -38,15 +39,17 @@ class AuthController extends Controller
     public function resetPassword(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'user' => ['required'],
-            'password' => ['required'],
+            'user' => 'required',
+            'password' => 'required',
+            'password-confirmation' => 'required|same:password',
         ]);
+
         $existingUser = null;
 
         // Take all users and check if input user existing
         $allUsers = Admin::all()->toArray();
         foreach ($allUsers as $user) {
-            if ($user == $credentials['user']) {
+            if ($user['user'] == $credentials['user']) {
                 $existingUser = Admin::query()->where('user', $credentials['user'])->select('user')->first()->toArray();
             }
         }

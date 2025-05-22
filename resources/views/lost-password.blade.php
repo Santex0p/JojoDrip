@@ -19,7 +19,9 @@
 
         <label for="password">Nouveau mot de passe</label>
         <input id="password" type="password" name="password">
-            <button type="submit">Login</button>
+        <label for="password-confirmation">Confirmer le mot de passe</label>
+        <input id="password-confirmation" type="password" name="password-confirmation">
+            <button type="submit">Reset</button>
         </form>
     </body>
 </html>

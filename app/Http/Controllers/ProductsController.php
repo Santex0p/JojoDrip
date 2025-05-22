@@ -15,9 +15,10 @@ class ProductsController extends Controller
     }
     public function add(Request $request) {
 
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string',
             'price' => 'required|numeric|between:0,9999999999.99',
+            'category' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
             'description' => 'required',
         ]);
@@ -28,10 +29,10 @@ class ProductsController extends Controller
 
         Product::query()->create([
             'photo' => $imageName,
-            'name' => $request->input('name'),
-            'category' => $request->input('category'),
-            'price' => $request->input('price'),
-            'description' => $request->input('description')
+            'name' => $data['name'],
+            'category' => $data['category'],
+            'price' => $data['price'],
+            'description' => $data['description']
         ]);
 
         return redirect()->route('admin-home');
@@ -44,18 +45,27 @@ class ProductsController extends Controller
 
     public function update(Request $request) {
 
+        $data = $request->validate([
+            'name' => 'required|string',
+            'price' => 'required|numeric|between:0,9999999999.99',
+            'category' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
+            'description' => 'required',
+            'photo-name' => 'required'
+        ]);
+
         if ($request->image) {
             $imageName = time() . '.' . $request->image->getClientOriginalName();
             $request->image->move(public_path('img'), $imageName);
-            File::delete(public_path('img/') . $request->input('photo-name'));
+            File::delete(public_path('img/') . $data['photo-name']);
         }
 
         Product::query()->where('id', $request->input('id'))->update([
-            'photo' => $imageName ?? $request->input('photo-name'),
-            'name' => $request->input('name'),
-            'category' => $request->input('category'),
-            'price' => $request->input('price'),
-            'description' => $request->input('description')
+            'photo' => $imageName ?? $data['photo-name'],
+            'name' =>  $data['name'],
+            'category' =>  $data['category'],
+            'price' => $data['price'],
+            'description' => $data['description']
         ]);
 
         return redirect()->route('detail-product', [$request->input('id'), $request->input('action')]);

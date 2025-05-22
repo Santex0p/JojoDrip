@@ -15,8 +15,6 @@ class BasketController extends Controller
 
     public function index(Request $request) {
 
-        $var = Product::find(1)->orders->toArray();
-
         $productsSQL = [];
         $sum = [];
 
@@ -78,7 +76,14 @@ class BasketController extends Controller
 
     public function buy(Request $request)
     {
-        $products = json_decode($request->input('products'), true);
+        $data = $request->validate([
+            'name' => 'string|required',
+            'email' => 'email|required',
+            'address' => 'required',
+            'products' => 'array|required'
+        ]);
+
+        $products = json_decode($data['products'], true);
         $sum = [];
 
         foreach ($products as $product) {
@@ -89,9 +94,9 @@ class BasketController extends Controller
 
 
         $customerID = Customer::query()->insertGetId([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'address' => $request->input('address'),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'address' => $data['address'],
             ]);
 
         $order = Order::query()->create([
