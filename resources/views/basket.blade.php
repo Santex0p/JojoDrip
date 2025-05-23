@@ -27,7 +27,7 @@
 
 
         @if($products)
-        <table>
+        <table>é
             <thead>
                 <tr>
                     <th>
@@ -57,7 +57,6 @@
                             <input type="hidden" value="{{$key}}" name="index">
                             <button type="submit">Effacer</button>
                         </form>
-
                     </td>
                 </tr>
             </tbody>

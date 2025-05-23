@@ -33,8 +33,7 @@
             <td>
                 <form id="edit-{{$product['id']}}" action="/product/{{$product['id']}}/{{$action = 'edit'}}" method="GET">
                 </form>
-                <form id="remove-{{$product['id']}}" action="/remove-product" method="POST">
-                    @csrf
+                <form id="remove-{{$product['id']}}" action="/remove-product" method="GET">
                     <input type="hidden" value="{{$product['id']}}" name="id">
                 </form>
                 <button type="submit" form="edit-{{$product['id']}}">Editer</button>
@@ -48,9 +47,9 @@
     <table>
         <thead>
         <tr>
-            <th>Order - List</th>
-            <th>Status</th>
-            <th>Change Status</th>
+            <th>Commande - Liste</th>
+            <th>Statut</th>
+            <th>Changement d'état</th>
         </tr>
         </thead>
         @foreach($orders as $order)
@@ -74,9 +73,9 @@
                         <input type="hidden" value="{{$order['id']}}" name="id">
                         <input type="hidden" value="DELIVERED" name="status">
                     </form>
-                    <button type="submit" form="pending-{{$order['id']}}">Pending</button>
-                    <button type="submit" form="progress-{{$order['id']}}">Progress</button>
-                    <button type="submit" form="delivered-{{$order['id']}}">Delivered</button>
+                    <button type="submit" form="pending-{{$order['id']}}">En attente</button>
+                    <button type="submit" form="progress-{{$order['id']}}">Progrès</button>
+                    <button type="submit" form="delivered-{{$order['id']}}">Livré</button>
                 </td>
             </tr>
         </tbody>

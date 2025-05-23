@@ -17,9 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //Admin::factory(10)->create();
-
-        Admin::factory()->create([
+        Admin::create([
             'user' => 'Santiago',
             'password' => bcrypt('123'),
         ]);

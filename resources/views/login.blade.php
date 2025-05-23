@@ -21,6 +21,6 @@
         <input id="password" type="password" name="password">
             <button type="submit">Login</button>
         </form>
-        <a href="/lost-password">réinitialiser le mot de passe</a>
+        <a href="/lost-password">Réinitialiser le mot de passe</a>
     </body>
 </html>

@@ -39,6 +39,8 @@ class ProductsController extends Controller
     }
 
     public function delete(Request $request) {
+        $product = Product::find($request->input('id'));
+        File::delete(public_path('img/') . $product['photo']);
         Product::destroy($request->input('id'));
         return redirect()->route('admin-home');
     }

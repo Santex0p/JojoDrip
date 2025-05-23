@@ -24,3 +24,4 @@ class Order extends Model
         return $this->hasMany(Product::class, 'product_id', 'id');
     }
 }
+

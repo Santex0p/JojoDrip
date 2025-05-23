@@ -26,7 +26,7 @@
                     {{$product['name']}}
                 </td>
                 <td>
-                    <img src="{{asset('img/'.$product['photo'])}}" width="200px">
+                    <img src="{{asset('img/'.$product['photo'])}}" width="200px" alt="product-image">
                     {{$product['price']}}
                     <a href="/product/{{$product['id']}}/{{$action = 'view'}}">Details</a>
                 </td>

@@ -13,7 +13,7 @@ Route::middleware('auth')->group(function () {
     # Products
     Route::post('/add-product', [ProductsController::class, 'add'])->name('products');
     Route::get('/products', function () {return view('add-product');})->name('product');
-    Route::post('/remove-product', [ProductsController::class, 'delete'])->name('delete-product');
+    Route::get('/remove-product', [ProductsController::class, 'delete'])->name('delete-product');
     Route::post('/update-product', [ProductsController::class, 'update'])->name('update-product');
     Route::get('/edit-view' , [ProductsController::class, 'editView'])->name('edit-product');
     Route::post('/change-status' , [BasketController::class, 'changeStatus'])->name('change-status');

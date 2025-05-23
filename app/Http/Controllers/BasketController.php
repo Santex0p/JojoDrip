@@ -34,7 +34,6 @@ class BasketController extends Controller
 
         }
 
-
         return view('basket', ['products' => $productsSQL, 'index' => 0, 'session' => session('products'), 'sum' => $sum]);
     }
 
@@ -51,9 +50,7 @@ class BasketController extends Controller
             session()->push('products', $request['id-product']);
         }
 
-
         return back();
-
     }
 
     public function removeFromBasket(Request $request) {
@@ -80,7 +77,7 @@ class BasketController extends Controller
             'name' => 'string|required',
             'email' => 'email|required',
             'address' => 'required',
-            'products' => 'array|required'
+            'products' => 'string|required'
         ]);
 
         $products = json_decode($data['products'], true);
@@ -115,9 +112,7 @@ class BasketController extends Controller
 
     public function changeStatus(Request $request)
     {
-
         Order::query()->where('id', $request->input('id'))->update(['status' => $request->input('status')]);
-
         return back();
     }
 }
