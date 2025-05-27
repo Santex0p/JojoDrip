@@ -5,33 +5,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        <!-- Styles / Scripts -->
+        @vite(['resources/css/app.css'])
 
     </head>
     <body>
-        <header>
-            <h1>JojoDrip</h1>
-            <a href="/admin">@if(Auth::check())Admin @else Se connecter @endif</a>
-            <a href="/basket">Panier</a>
-            <nav>
-
-            </nav>
-        </header>
-    <table>
-        <tr>
-            <th colspan="{{count($products)}}">Produits</th>
-        </tr>
-        <tr>
+    <header>
+        <nav>
+            <div class="logo"><a href="/"><img src="{{asset('img/Logo-jojo.png')}}" alt="logo"></a></div>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                @if(Auth::check())
+                    <a href="/admin"><img src="{{asset('img/admin.png')}}" alt="admin"></a>
+                    <a href="/logout"><img src="{{asset('img/logout.png')}}" alt="logout"></a>
+                @else
+                    <a href="/login"><img src="{{asset('img/login.png')}}" alt="login"></a>
+                @endif
+                <a href="/basket"><img src="{{asset('img/panier.png')}}" alt="basket"></a>
+            </div>
+        </nav>
+    </header>
+        <section class="product-grid">
             @foreach($products as $product)
-                <td>
-                    {{$product['name']}}
-                </td>
-                <td>
-                    <img src="{{asset('img/'.$product['photo'])}}" width="200px" alt="product-image">
-                    {{$product['price']}}
-                    <a href="/product/{{$product['id']}}/{{$action = 'view'}}">Details</a>
-                </td>
+                <div class="product-card">
+                    <img src="{{ asset('img/'.$product['photo']) }}" alt="{{ $product['name'] }}">
+                    <div class="info">
+                        <h3>{{ $product['name'] }}</h3>
+                        <p>{{ number_format($product['price'], 2) }} fr</p>
+                        <a href="{{ url('/product/'.$product['id'].'/view') }}">Details</a>
+                    </div>
+                </div>
             @endforeach
-        </tr>
-    </table>
+        </section>
     </body>
 </html>

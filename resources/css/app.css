@@ -1,11 +1,176 @@
-@import 'tailwindcss';
+/*!* public/css/style.css *!*/
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/*!* 0) Import de la tipografía para el logo (añádelo encima si usas Google Fonts) *!*/
+/*!* @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap'); *!*/
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+:root {
+    /* Fondo general y tipografía */
+    --color-bg:       #FFF8E7;  /* Crema muy clara */
+    --color-text:     #3E2723;  /* Marrón oscuro */
+
+    /* Paleta principal */
+    --color-nav-bg: #ffeac2; /* Mostaza suave para el nav */
+    --color-card-bg:    #F5E8C7; /* Beige claro para las tarjetas */
+
+    /* Acentos */
+    --color-primary:   #D9A441; /* Mostaza (títulos) */
+    --color-secondary: #6D4C41; /* Marrón cálido (bordes y textos secundarios) */
+    --color-accent:    #C68642; /* Marrón medio para botones */
+}
+
+/*!* 1) Reset básico *!*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+/* 2) Navegación elegante */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--color-nav-bg);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    top: 0;
+}
+nav .logo img {
+    font-family: 'Cinzel Decorative', serif;
+    width: 7.5em;
+    color: var(--color-secondary);
+}
+nav .menu {
+    display: flex;
+    gap: 1rem;
+}
+nav .menu a {
+    display: flex;
+    padding: .5rem 1rem;
+    background-color: var(--color-bg);
+    color: var(--color-secondary);
+    text-decoration: none;
+    border-radius: .4rem;
+    font-weight: 600;
+    transition: background .3s, color .3s;
+}
+
+nav .menu img {
+    width: 20px;
+}
+
+nav .menu a:hover,
+nav .menu a:focus {
+    background-color: var(--color-secondary);
+    color: var(--color-bg);
+}
+
+/* 3) Grid de productos responsive */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* CHATGPT */
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+/* 4) Tarjeta de producto */
+.product-card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-secondary);
+    border-radius: .8rem;
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+/* CHATGPT */
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+.product-card img {
+    width: 100%;
+}
+
+/*!* 5) Información dentro de la tarjeta *!*/
+.product-card .info {
+    padding: 1rem;
+    text-align: center;
+}
+.product-card .info h3 {
+    font-size: 1.1rem;
+    margin-bottom: .4rem;
+    color: var(--color-primary);
+}
+.product-card .info p {
+    margin-bottom: .8rem;
+    font-weight: bold;
+    color: var(--color-secondary);
+}
+
+/* 6) Botón Details bien diferenciado */
+.product-card .info a {
+    padding: .5rem 1rem;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    text-decoration: none;
+    border-radius: .5rem;
+    font-size: .95rem;
+    transition: opacity .2s;
+}
+.product-card .info a:hover {
+    opacity: .85;
+}
+
+/* ===== Detalle de producto ===== */
+.product-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+/* Ancho fijo para la imagen, con límite */
+.product-detail .image {
+    flex: 0 0 300px;    /* siempre 300px de ancho */
+}
+.product-detail .image img {
+    width: 100%;
+    height: auto;
+    border-radius: .8rem;
+}
+
+/* Información ocupa el resto */
+.product-detail .info {
+    flex: 1;
+}
+
+/* ── Botón sencillo ── */
+.product-detail .info form button {
+    display: inline-block;
+    padding: .6rem 1.2rem;
+    margin-bottom: 1rem;
+    background-color: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: .4rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+.product-detail .info form button:hover {
+    opacity: .85;
+}
+
+/*Admin view*/
+.product-edit {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-edit .image {
+    flex: 0 0 300px;    /* siempre 300px de ancho */
 }

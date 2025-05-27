@@ -56,7 +56,7 @@ class AuthController extends Controller
 
         if($existingUser) {
             Admin::query()->update([
-                'password' => Hash::make($credentials['password']),
+                'password' => Hash::make($credentials['password']), // The IDE proposed to Hash like this
             ]);
         }
         else

@@ -5,13 +5,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
+        @vite(['resources/css/app.css'])
     </head>
     <body>
     <header>
         <nav>
-            <a href="/">Accueil</a>
+            <div class="logo"><a href="/"><img src="{{asset('img/Logo-jojo.png')}}" alt="logo"></a></div>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                @if(Auth::check())
+                    <a href="/admin"><img src="{{asset('img/admin.png')}}" alt="admin"></a>
+                    <a href="/logout"><img src="{{asset('img/logout.png')}}" alt="logout"></a>
+                @else
+                    <a href="/login"><img src="{{asset('img/login.png')}}" alt="login"></a>
+                @endif
+            </div>
         </nav>
+    </header>
 
         <form action="/buy" method="POST">
             @csrf
@@ -67,6 +77,5 @@
         @else
             <p>Pas de produits ajoutées</p>
         @endif
-    </header>
     </body>
 </html>

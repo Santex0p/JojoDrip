@@ -39,6 +39,9 @@ class ProductsController extends Controller
     }
 
     public function delete(Request $request) {
+        $request->validate([
+            'id' => 'required',
+        ]);
         $product = Product::find($request->input('id'));
         File::delete(public_path('img/') . $product['photo']);
         Product::destroy($request->input('id'));
@@ -75,6 +78,10 @@ class ProductsController extends Controller
     }
 
     public function editView(Request $request) {
+        $request->validate([
+            'id' => 'required',
+            'action' => 'required',
+        ]);
         return redirect()->route('detail-product', $request->input('id'))->with('action', $request->input('action'));
     }
 

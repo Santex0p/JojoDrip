@@ -5,11 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        @vite(['resources/css/app.css'])
     </head>
     <body>
     <header>
         <nav>
-            <a href="/">Accueil</a>
+            <div class="logo"><a href="/"><img src="{{asset('img/Logo-jojo.png')}}" alt="logo"></a></div>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                @if(Auth::check())
+                    <a href="/admin">Admin</a>
+                    <a href="/logout">Se déconnecter</a>
+                @else
+                    <a href="/login">Se connecter</a>
+                @endif
+                <a href="/basket"><img src="{{asset('img/panier.png')}}" alt="basket"></a>
+            </div>
         </nav>
     </header>
         <form action="/reset-password" method="POST">

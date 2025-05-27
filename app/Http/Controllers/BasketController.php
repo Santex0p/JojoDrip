@@ -38,6 +38,9 @@ class BasketController extends Controller
     }
 
     public function addToBasket(Request $request) {
+        $request->validate([
+            'id-product' => 'required',
+        ]);
 
         if (!session()->has('products'))
         {
@@ -54,6 +57,9 @@ class BasketController extends Controller
     }
 
     public function removeFromBasket(Request $request) {
+        $request->validate([
+            'index' => 'required',
+        ]);
 
         session()->pull('products.' .$request['index']);
 
@@ -112,6 +118,9 @@ class BasketController extends Controller
 
     public function changeStatus(Request $request)
     {
+        $request->validate([
+            'id' => 'required',
+        ]);
         Order::query()->where('id', $request->input('id'))->update(['status' => $request->input('status')]);
         return back();
     }

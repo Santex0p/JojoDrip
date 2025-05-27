@@ -5,17 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
+        @vite(['resources/css/app.css'])
     </head>
     <body>
-        <header>
-            <h1>JojoDrip</h1>
-            <a href="/admin">@if(Auth::check())Admin @else Se connecter @endif</a>
-            <a href="/basket">Panier</a>
-            <nav>
+    <header>
+        <nav>
+            <div class="logo"><a href="/"><img src="{{asset('img/Logo-jojo.png')}}" alt="logo"></a></div>
+            <div class="menu">
                 <a href="/">Accueil</a>
-            </nav>
-        </header>
+                @if(Auth::check())
+                    <a href="/admin">Admin</a>
+                    <a href="/logout">Se déconnecter</a>
+                @else
+                    <a href="/login">Se connecter</a>
+                @endif
+                <a href="/basket"><img src="{{asset('img/panier.png')}}" alt="basket"></a>
+            </div>
+        </nav>
+    </header>
         <p>Merci pour votre achat</p>
         <p>Le statut de votre achat se trouve en {{$status}}</p>
         <a href="/">Retourner</a>

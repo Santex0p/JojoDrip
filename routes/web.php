@@ -37,8 +37,6 @@ Route::post('/auth', [AuthController::class, 'login'])->name('auth');
 Route::get('/login', function () { return view('login'); })->name('login'); # View login
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
-
 # View and password reset method
 Route::get('/lost-password', function () { return view('lost-password'); });
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('reset-password');

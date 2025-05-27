@@ -5,15 +5,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
+        <!-- Styles / Scripts -->
+        @vite(['resources/css/app.css'])
     </head>
     <body>
     <header>
         <nav>
-            <a href="/">Accueil</a>
+            <div class="logo"><a href="/"><img src="{{asset('img/Logo-jojo.png')}}" alt="logo"></a></div>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                @if(Auth::check())
+                    <a href="/admin"><img src="{{asset('img/admin.png')}}" alt="admin"></a>
+                    <a href="/logout"><img src="{{asset('img/logout.png')}}" alt="logout"></a>
+                @else
+                    <a href="/login"><img src="{{asset('img/login.png')}}" alt="login"></a>
+                @endif
+                <a href="/basket"><img src="{{asset('img/panier.png')}}" alt="basket"></a>
+            </div>
         </nav>
     </header>
-
+    <section class="product-edit">
     @if(Auth::check() && $action == 'edit')
         <form action="/update-product" method="POST" enctype="multipart/form-data">
             @csrf
@@ -34,21 +45,27 @@
             <input type="hidden" value="edit" name="action">
             <button type="submit">Mettre à Jour</button>
         </form>
+    </section>
     @else
-            <img src="{{asset('img/'.$product['photo'])}}" width="500px" alt="Product-Image">
-            <h3>{{$product['name']}}</h3>
-            <h3>Prix</h3>
-            <p>{{$product['price']}}</p>
-            <h3>Categorie</h3>
-            <p>{{$product['category']}}</p>
-            <h3>Description</h3>
-            <p>{{$product['description']}}</p>
+        <section class="product-detail">
+            <div class="image">
+                <img src="{{ asset('img/' . $product['photo']) }}"
+                     alt="{{ $product['name'] }}">
+            </div>
+            <div class="info">
+                <h2>{{ $product['name'] }}</h2>
+                <p class="price">{{ $product['price'] }} fr</p>
+                <p class="description">
+                    {{ $product['description'] }}
+                </p>
+            </div>
+        </section>
     @endif
 
-    <form action="/add-to-basket" method="GET">
+    <form id="add-basket" action="/add-to-basket" method="GET">
 
         <input type="hidden" value="{{$product['id']}}" name="id-product">
-        <button type="submit">Mettre au Panier</button>
+        <button type="submit" form="add-basket">Mettre au Panier</button>
 
     </form>
 
