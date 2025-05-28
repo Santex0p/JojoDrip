@@ -1,5 +1,9 @@
 <?php
-
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : Eloquent model representing a admin (t_admin table)
+///
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;

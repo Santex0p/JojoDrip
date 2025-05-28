@@ -1,3 +1,9 @@
+{{--
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : home view
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -37,5 +43,6 @@
                 </div>
             @endforeach
         </section>
+    <footer>JojoDrip - © Santiago Escobar Toro</footer>
     </body>
 </html>

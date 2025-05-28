@@ -1,3 +1,9 @@
+{{--
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : lost-password view
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -34,5 +40,6 @@
         <input id="password-confirmation" type="password" name="password-confirmation">
             <button type="submit">Reset</button>
         </form>
+    <footer>JojoDrip - © Santiago Escobar Toro</footer>
     </body>
 </html>

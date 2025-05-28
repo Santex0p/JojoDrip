@@ -1,5 +1,8 @@
 <?php
-
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : creation of jobs table
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

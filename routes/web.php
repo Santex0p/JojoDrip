@@ -1,5 +1,8 @@
 <?php
-
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : Route of application
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BasketController;

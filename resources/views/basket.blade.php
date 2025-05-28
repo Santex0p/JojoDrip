@@ -1,3 +1,9 @@
+{{--
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : basket view
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -77,5 +83,6 @@
         @else
             <p>Pas de produits ajoutées</p>
         @endif
+    <footer>JojoDrip - © Santiago Escobar Toro</footer>
     </body>
 </html>

@@ -1,3 +1,9 @@
+{{--
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : add-product view
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -43,5 +49,6 @@
         <button type="submit">Ajouter</button>
         </form>
     </div>
+    <footer>JojoDrip - © Santiago Escobar Toro</footer>
     </body>
 </html>

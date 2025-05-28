@@ -1,3 +1,9 @@
+{{--
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : admin panel view
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -22,7 +28,6 @@
             </div>
         </nav>
     </header>
-
     <h2>Panneau d'administration</h2>
     <table>
         <thead>
@@ -86,6 +91,6 @@
         </tbody>
         @endforeach
     </table>
-
+    <footer>JojoDrip - © Santiago Escobar Toro</footer>
     </body>
 </html>

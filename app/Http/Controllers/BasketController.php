@@ -1,4 +1,8 @@
 <?php
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : Controller to manage shopping basket (view, add, remove, purchase, status change)
 
 namespace App\Http\Controllers;
 
@@ -12,12 +16,19 @@ use Illuminate\Support\Facades\Session;
 
 class BasketController extends Controller
 {
-
-    public function index(Request $request) {
+    /**
+     * Display the basket contents and total price.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request): \Illuminate\View\View
+    {
 
         $productsSQL = [];
         $sum = [];
 
+        // If there are products in session, load each and convert to array
         if (session()->has('products'))
         {
             foreach(session('products') as $key => $productID)
@@ -25,7 +36,7 @@ class BasketController extends Controller
                 $productsSQL[] = Product::find($productID)->toArray();
             }
 
-
+            // Calculate total price
             foreach($productsSQL as $product)
             {
                 $sum[] = $product['price'];
@@ -37,7 +48,14 @@ class BasketController extends Controller
         return view('basket', ['products' => $productsSQL, 'index' => 0, 'session' => session('products'), 'sum' => $sum]);
     }
 
-    public function addToBasket(Request $request) {
+    /**
+     * Add a product to the basket.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addToBasket(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $request->validate([
             'id-product' => 'required',
         ]);
@@ -56,7 +74,14 @@ class BasketController extends Controller
         return back();
     }
 
-    public function removeFromBasket(Request $request) {
+    /**
+     * Remove a product from the basket by its index.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeFromBasket(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $request->validate([
             'index' => 'required',
         ]);
@@ -70,13 +95,24 @@ class BasketController extends Controller
         return back();
     }
 
-    public function removeAll()
+    /**
+     * Clear all products from the basket.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function removeAll(): \Illuminate\Http\RedirectResponse
     {
         session()->forget('products');
 
         return back();
     }
 
+    /**
+     * Complete the purchase: validate input, save customer and order, then clear the basket.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\View\View
+     */
     public function buy(Request $request)
     {
         $data = $request->validate([
@@ -87,6 +123,7 @@ class BasketController extends Controller
         ]);
 
         $products = json_decode($data['products'], true);
+        // Calculate total price
         $sum = [];
 
         foreach ($products as $product) {
@@ -95,13 +132,13 @@ class BasketController extends Controller
 
         $sum = array_sum($sum);
 
-
+        // Insert new customer and retrieve its ID
         $customerID = Customer::query()->insertGetId([
             'name' => $data['name'],
             'email' => $data['email'],
             'address' => $data['address'],
             ]);
-
+        // Create an order with PENDING status
         $order = Order::query()->create([
             'customer_id' => $customerID,
             'quantity' => count($products),
@@ -110,17 +147,24 @@ class BasketController extends Controller
             'created_at' => now()
         ]);
 
+        // Clear the basket
         session()->forget('products');
 
         return view('purchase-completed', ['status' => $order['status']]);
 
     }
-
-    public function changeStatus(Request $request)
+    /**
+     * Change the status of an existing order.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function changeStatus(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'id' => 'required',
         ]);
+        // Update the order’s status
         Order::query()->where('id', $request->input('id'))->update(['status' => $request->input('status')]);
         return back();
     }

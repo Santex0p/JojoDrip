@@ -1,3 +1,9 @@
+{{--
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : details of product view
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -59,15 +65,16 @@
                     {{ $product['description'] }}
                 </p>
             </div>
-        </section>
+
     @endif
 
     <form id="add-basket" action="/add-to-basket" method="GET">
 
         <input type="hidden" value="{{$product['id']}}" name="id-product">
-        <button type="submit" form="add-basket">Mettre au Panier</button>
+        <button class="basket-button" type="submit" form="add-basket">Mettre au Panier</button>
 
     </form>
-
+        </section>
+    <footer>JojoDrip - © Santiago Escobar Toro</footer>
     </body>
 </html>

@@ -1,3 +1,9 @@
+{{--
+/// ETML
+/// Author      : Santiago Escobar Toro
+/// Date        : 2025-05-28
+/// Description : purchased completed view
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -24,7 +30,9 @@
         </nav>
     </header>
         <p>Merci pour votre achat</p>
-        <p>Le statut de votre achat se trouve en {{$status}}</p>
+        <p>Le statut de votre achat se trouve en {{ $status === 'PENDING' ? 'attente' : $status }}
+        </p>
         <a href="/">Retourner</a>
+    <footer>JojoDrip - © Santiago Escobar Toro</footer>
     </body>
 </html>
