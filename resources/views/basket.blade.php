@@ -43,7 +43,7 @@
 
 
         @if($products)
-        <table>é
+        <table>
             <thead>
                 <tr>
                     <th>
