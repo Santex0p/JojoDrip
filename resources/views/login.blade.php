@@ -6,19 +6,32 @@
 --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-        @vite(['resources/css/app.css'])
-    </head>
-    <body>
-    <header>
-        <nav>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laravel</title>
+    <!-- Styles / Scripts -->
+    @vite(['resources/css/app.css'])
+
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo"><a href="/"><img src="{{asset('img/Logo-jojo.png')}}" alt="logo"></a></div>
+        <div class="menu">
             <a href="/">Accueil</a>
-        </nav>
-    </header>
+            @if(Auth::check())
+                <a href="/admin"><img src="{{asset('img/admin.png')}}" alt="admin"></a>
+                <a href="/logout"><img src="{{asset('img/logout.png')}}" alt="logout"></a>
+            @else
+                <a href="/login"><img src="{{asset('img/login.png')}}" alt="login"></a>
+            @endif
+            <a href="/basket"><img src="{{asset('img/panier.png')}}" alt="basket"></a>
+        </div>
+    </nav>
+</header>
         <form action="/auth" method="POST">
             @csrf
         <label for="user">Utilisateur</label>
